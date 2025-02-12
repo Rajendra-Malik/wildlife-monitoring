@@ -15,7 +15,8 @@ import Dashboard from "./components/pages/Dashboard"
 import NotFound from "./components/NotFound"
 import GoToTop from "./components/pages/GoToTop"
 import AdminMainHeader from './components/admin/AdminMainHeader'
-import AdDashboard from "./components/admin/Pages/AdDashboard"
+import AdDashboard from "./components/admin/Pages/AdDashboard/Index.jsx"
+import Content from "./components/admin/Pages/Content/Index.jsx"
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
 
         <Route  element={<AdminMainHeader />}>
           <Route path="/admin" element={<AdDashboard />} />
+          <Route path="/content" element={<Content />} />
           {/* <Route path="/usercontent" element={ <AdminContent />} /> */}
       </Route>
     </Routes >
