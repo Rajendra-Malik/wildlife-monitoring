@@ -67,6 +67,20 @@ const Sidebar = () => {
                                         Forest
                                     </Button>
                                 </li>
+
+                                <li className='w-full'>
+                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]'><span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
+                                        Forest Species
+                                    </Button>
+                                </li>
+
+                                <li className='w-full'>
+                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]'><span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
+                                        Fire Details
+                                    </Button>
+                                </li>
                             </ul>
                         </Collapse>
 

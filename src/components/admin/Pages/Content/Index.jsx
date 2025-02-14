@@ -12,10 +12,6 @@ const Content = () => {
     const [search, setSearch] = useState(""); // filter changes
     const [filterData, setFilterData] = useState([]); // filter changes
 
-    function deleteRow(id) {
-        
-    }
-
     async function fetchUserData() {
         setLoader(true);
 
@@ -41,6 +37,29 @@ const Content = () => {
     }
 
 
+    async function deleteSingleRow(id) {
+        try {
+            const deleteResult = await axios.delete(`http://localhost/wildlife_backend/api/user.php/${id}`);
+            if (deleteResult.status === 200) {
+                if (deleteResult.data.status === "0") {
+                    toast.error(deleteResult.data.errorMessage);
+                } else {
+                    // toast.success(deleteResult.data.successMessage);
+                    const re_call_user_data = await axios.get("http://localhost/wildlife_backend/api/user.php");
+                    if (re_call_user_data.data.status === "1") {
+                        setFilterData(re_call_user_data.data.post); 
+                         toast.success("User deleted successfully.");
+                    }
+                    }
+            } else {
+                toast.error("Status 404");
+            }
+        } catch (error) {
+            console.log("user delete data error => " + error);
+        }
+    }
+
+
     useEffect(() => {
         fetchUserData();
     }, [])
@@ -48,6 +67,16 @@ const Content = () => {
     useEffect(() => {
         // console.log("Updated userData:", userData);
     }, [userData]);
+
+     // filter changes
+     useEffect(() => {
+        const result = userData.filter((data) => {
+            return data.name.match(search);
+        })
+
+        setFilterData(result);
+    },[search])
+
 
     const column = [
         {
@@ -80,21 +109,12 @@ const Content = () => {
             name: "Action",
             cell: (row) => (
                 <button className=" hover:cursor-pointer bg-[#FF5252] h-[27px] w-[45px] rounded-md
-                 flex items-center justify-center" onClick={() => deleteRow(row.id)}>
+                 flex items-center justify-center" onClick={() => deleteSingleRow(row.id)}>
                     <TbHttpDelete className="h-[20px] w-[20px] text-white"/>
                 </button>
             )
         }
     ];
-
-    // filter changes
-    useEffect(() => {
-        const result = userData.filter((data) => {
-            return data.name.match(search);
-        })
-
-        setFilterData(result);
-    },[search])
 
     return (
         <div className="mt-6">
