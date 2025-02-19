@@ -19,7 +19,10 @@ import elephant from "../assets/animal-md-3.jpg"
 import animal from "../assets/animal-lg-1.jpg"
 import jebra from "../assets/animal-md-2.jpg"
 import jiraf from "../assets/animal-lg-3.jpg"
-import visitingimage from "../assets/bg-2.jpg"
+import { FaMapMarkerAlt, } from "react-icons/fa";
+import { MdCall } from "react-icons/md";
+import { IoIosMailOpen } from "react-icons/io";
+import {motion} from "framer-motion"
 
 const Home = ({ slider }) => {
     let forestData = [
@@ -89,7 +92,7 @@ const Home = ({ slider }) => {
                     <h1>Enjoy Wonderful Day With Your Family</h1>
                 </div>
                 <div>
-                    <div className="bg-[#F3F4F5] w-36 opacity-35 h-12 rounded-md flex items-center justify-center font-bold">
+                    <div className="bg-[#ccdcd4] w-36 opacity-35 h-12 rounded-md flex items-center justify-center font-bold">
                         <NavLink>Read More</NavLink>
                     </div>
                     <div>
@@ -100,7 +103,20 @@ const Home = ({ slider }) => {
 
             {/* why you should visit wildlife monitoring */}
             <div className="flex mt-20 w-10/12 justify-around m-auto gap-x-42">
-                <div className="flex flex-col gap-y-6 w-[50%]">
+                <motion.div className="flex flex-col gap-y-6 w-[50%]"
+                    initial={
+                        {
+                            opacity: 0
+                        }
+                    }
+                    whileInView={{
+                        opacity: 1,
+                        scale: 1.0,
+                        transition: {
+                            duration: 3
+                        }
+                    }}
+                >
 
                     {/* left part */}
                     <p className="opacity-75"><span className="text-[#2EB872] mr-2 ">#</span>Welcome To Wildlife</p>
@@ -125,23 +141,52 @@ const Home = ({ slider }) => {
                             <FaRegCheckCircle className="text-[#2EB872]" />
                             <span className="text-lg font-semibold opacity-75">World Best Animals</span>
                         </li>
-                        <div className="bg-[#2EB872] w-36 h-12 text-white flex items-center justify-center font-semibold">
-                            <NavLink>Read More</NavLink>
+                        <div className="bg-[#ccdcd4] w-36 h-12 flex items-center justify-center font-semibold">
+                            <NavLink className="">Read More</NavLink>
                         </div>
                     </ul>
-                </div>
+                </motion.div>
 
                 {/* right part */}
-                <div className="w-[50%]">
+                <motion.div className="w-[50%]"
+                     initial={
+                        {
+                            opacity: 0
+                        }
+                    }
+                    whileInView={{
+                        opacity: 1,
+                        scale: 1.0,
+                        transition: {
+                            duration: 3
+                        }
+                    }}
+                >
                     <div className="div_color"></div>
                     <div className="ml-16 -mt-[352px]">
                         <img src={lion} alt="" className="w-[500px] h-[450px] absolute" />
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {/* no 3 part */}
-            <div className="w-10/11 m-auto mt-24">
+            <motion.div className="w-10/11 m-auto mt-24"
+                 initial={
+                    {
+                        opacity: 0
+                    }
+                }
+                whileInView={{
+                    opacity: 1,
+                    scale: 1.0,
+                    transition: {
+                        duration: 3
+                    }
+                }}
+                viewport={{
+                    amount: 0.8
+                }}
+            >
                 <div >
                     <img src={tiger} alt="" className="number_tg h-[340px] w-full" />
                 </div>
@@ -168,10 +213,26 @@ const Home = ({ slider }) => {
                         <p className="text-white font-semibold text-lg">Save Wild Life</p>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* 4th part */}
-            <div className="mt-40 w-11/12 m-auto">
+            <motion.div className="mt-40 w-11/12 m-auto"
+                 initial={
+                    {
+                        opacity: 0
+                    }
+                }
+                whileInView={{
+                    opacity: 1,
+                    scale: 1.0,
+                    transition: {
+                        duration: 3
+                    }
+                }}
+                viewport={{
+                    amount: 0.8
+                }}
+            >
                 <div className="flex justify-between pl-8 pr-8">
                     <div className="w-[475px] flex flex-col gap-y-2">
                         <p className="text-md"><span className="text-[#2EB872] mr-2">#</span>Our Services</p>
@@ -186,12 +247,12 @@ const Home = ({ slider }) => {
                     </div>
                 </div>
 
-            </div>
+            </motion.div>
 
             <div className="w-full m-auto flex flex-wrap justify-center pl-18 mt-16 gap-y-10 gap-x-8">
                 {
                     forestData.map((data) => {
-                        return <Card key={ data.id} data={data} />
+                        return <Card key={data.id} data={data} />
                     })
                 }
             </div>
@@ -205,7 +266,7 @@ const Home = ({ slider }) => {
                             Let`s See Our<span className="text-[#2EB872] ml-6">Wildlife</span> Awsome Animals
                         </h1>
                     </div>
-                    <div className="bg-[#2EB872] w-72 h-14 text-white flex items-center justify-center font-semibold mt-20">
+                    <div className="bg-[#ccdcd4] w-72 h-14 text-white flex items-center justify-center font-semibold mt-20">
                         <NavLink>Read More</NavLink>
                     </div>
                 </div>
@@ -301,8 +362,91 @@ const Home = ({ slider }) => {
             </div>
 
 
+            {/* contact info */}
+            <div className="w-full mt-20">
+                <motion.div className="w-11/12 m-auto flex gap-x-10 ml-30"
+                     initial={
+                        {
+                            opacity: 0
+                        }
+                    }
+                    whileInView={{
+                        opacity: 1,
+                        scale: 1.0,
+                        transition: {
+                            duration: 3
+                        }
+                    }}
+                    viewport={{
+                        amount: 0.8
+                    }}
+                >
+                    <div className="bg-[#F3F4F5] w-[400px] h-[175px] flex items-center justify-center gap-x-4 pl-4 pr-4">
+                        <div className="bg-white h-[39px] w-[40px] rounded-md flex items-center justify-center">
+                            <FaMapMarkerAlt className="text-[#2EB872] h-[20px] w-[20px]" />
+                        </div>
+                        <div className="flex flex-col w-[250px]">
+                            <p className="opacity-75 text-md"><span className="text-[#2EB872] pr-1 ">#</span>Address</p>
+                            <h1 className="text-xl">123 Street, Xavier Square, BBSR</h1>
+                        </div>
+                    </div>
+                    <div className="bg-[#F3F4F5] w-[400px] h-[175px] flex items-center justify-center gap-x-4 pl-4 pr-4">
+                        <div className="bg-white h-[39px] w-[40px] rounded-md flex items-center justify-center">
+                            <MdCall className="text-[#2EB872] h-[20px] w-[20px]" />
+                        </div>
+                        <div className="flex flex-col w-[250px]">
+                            <p className="opacity-75 text-md"><span className="text-[#2EB872] pr-1">#</span>Call Now</p>
+                            <h1 className="text-xl">+012 345 6789</h1>
+                        </div>
+                    </div>
+                    <div className="bg-[#F3F4F5] w-[400px] h-[175px] flex items-center justify-center gap-x-4 pl-4 pr-4">
+                        <div className="bg-white h-[39px] w-[40px] rounded-md flex items-center justify-center">
+                            <IoIosMailOpen className="text-[#2EB872] h-[20px] w-[20px]" />
+                        </div>
+                        <div className="flex flex-col w-[250px]">
+                            <p className="opacity-75 text-md"><span className="text-[#2EB872] pr-1">#</span>Mail Now</p>
+                            <h1 className="text-xl">info@example.com</h1>
+                        </div>
+                    </div>
+                </motion.div>
+
+                <div className="w-11/12 m-auto mt-14 ml-28 flex gap-x-4">
+                    <div className="flex flex-col gap-y-6">
+                        <div className="w-[590px] flex flex-col gap-y-6">
+                            <p className=""><span className="text-[#2EB872] pr-1">#</span>Contact Us</p>
+                            <h1 className="raieway-font text-5xl font-bold leading-15">Have Any Query? Please Contact Us!</h1>
+                            <p className="text-md opacity-75 ">The contact form is currently inactive. Get a functional and working
+                                contact form with Ajax & PHP in a few minutes.
+                                Just copy and paste the files, add a little code and you're done.
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-y-1">
+                            <div className="flex gap-x-4">
+                                <input className="w-[280px] h-[45px] !rounded-md !border-none text-center"
+                                    type="text"
+                                    placeholder="Youe Name"
+                                />
+                                <input className="w-[290px] h-[44px] !rounded-md !border-none text-center"
+                                    type="email"
+                                    placeholder="Youe Email"
+                                />
+                            </div>
+                            <input type="text" placeholder="Subject" className="h-[45px] !rounded-md !border-none text-center"/>
+                            <textarea placeholder="Message" className="!rounded-md border-black border-2 text-center"/>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.6817909415804!2d85.80692917737758!3d20.3077259945068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909f8dfeb3ecb%3A0x1ee91b2b1cab81cb!2sORSAC%20Geoservices!5e0!3m2!1sen!2sin!4v1739881918567!5m2!1sen!2sin"
+                        className="w-[600px] h-[450px] border-none " loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                         </iframe> */}
+                    </div>
+                </div>
+            </div>
+
             {/* missing forest slider  */}
-            
+
         </>
     )
 }

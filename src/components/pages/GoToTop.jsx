@@ -5,6 +5,7 @@ import { IoIosArrowRoundUp } from "react-icons/io";
 function GoToTop() {
 
     const [topBtn, setTopBtn] = useState(false);
+    
     function goToTopHandlet() {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }

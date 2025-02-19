@@ -87,11 +87,12 @@ const Content = () => {
         {
             name: "Name",
             selector: (row) => row.name,
-            sortable: true,
+            width: "180px"
         },
         {
             name: "Email",
-            selector: (row) => row.email_id
+            selector: (row) => row.email_id,
+            width: "240px"
         },
         {
             name: "Password",

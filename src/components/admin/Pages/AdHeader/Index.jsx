@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { FaUserCircle } from "react-icons/fa";
 import Divider from '@mui/material/Divider';
 import { FaRegUser } from "react-icons/fa6";
-import { IoMdLogOut } from "react-icons/io";
+import { MdOutlineSettingsPower } from "react-icons/md";
 import { TbSettingsCheck } from "react-icons/tb";
 
 
@@ -115,7 +115,7 @@ const AdHeader = () => {
 
                         <Divider />
                         <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
-                            <IoMdLogOut className="text-[18px]"/> <span className='text-[14px]'>Sign Out</span>
+                            <MdOutlineSettingsPower className="text-[18px]"/> <span className='text-[14px]'>Log Out</span>
                         </MenuItem>
                     </Menu>
                 </div>
