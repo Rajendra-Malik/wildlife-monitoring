@@ -10,15 +10,20 @@ import Content from "../Content/Index.jsx";
 import Forest from "../Forest/Forest.jsx";
 import ForestSpecies from "../ForestSpecies/ForestSpecies.jsx";
 import SpeciesMapping from "../SpeciesMapping/SpeciesMapping.jsx";
+import Fire from "../fire/Fire.jsx";
+import UDashboard from "../UDashboard/UDashboard.jsx";
 
 
 
 const Sidebar = () => {
 
     const [showContent, setShowContent] = useState(false);
-    const [forestHandler, setForestHandler] = useState(false);
+    const [forestContent, setForestContent] = useState(false);
     const [speciesContent, setSpeciesContent] = useState(false);
     const [mappingContent, setMappingContent] = useState(false);
+    const [fireContent, setFireContent] = useState(false);
+    const [dashboardContent, setDashboardContent] = useState(false);
+
     const [submenuIndex, setSubMenuIndex] = useState(null);
     // const navigate = useNavigate();
 
@@ -29,6 +34,52 @@ const Sidebar = () => {
             setSubMenuIndex(index);
         }
     }
+    const changeHandler = (e) => {
+        if (e.target.id === "user") {
+            setShowContent(true);
+            setSpeciesContent(false);
+            setForestContent(false);
+            setMappingContent(false);
+            setFireContent(false);
+            setDashboardContent(false);
+        }
+        else if (e.target.id === "dashboard") {
+            setDashboardContent(true);
+            setForestContent(false);
+            setSpeciesContent(false);
+            setShowContent(false);
+            setMappingContent(false);
+            setFireContent(false);
+        }else if (e.target.id === "forest") {
+            setForestContent(true);
+            setSpeciesContent(false);
+            setShowContent(false);
+            setMappingContent(false);
+            setFireContent(false);
+            setDashboardContent(false);
+        } else if (e.target.id === "species") {
+            setSpeciesContent(true);
+            setForestContent(false);
+            setShowContent(false);
+            setMappingContent(false);
+            setFireContent(false);
+            setDashboardContent(false);
+        } else if (e.target.id === "mapping") {
+            setMappingContent(true);
+            setSpeciesContent(false);
+            setForestContent(false);
+            setShowContent(false);
+            setFireContent(false);
+            setDashboardContent(false);
+        } else if (e.target.id === "fire") {
+            setFireContent(true);
+            setMappingContent(false);
+            setSpeciesContent(false);
+            setForestContent(false);
+            setShowContent(false);
+            setDashboardContent(false);
+        }
+    };
 
 
     return (
@@ -42,16 +93,17 @@ const Sidebar = () => {
 
                 <ul className="mt-4 px-5 flex flex-col gap-y-1 raleway-font fixed">
                     <li>
-                        <Button className='w-full !capitalize !justify-start flex gap-3 text-[14px]
-                     !text-[rgba(0,0,0,0.8)] font-[600] items-center hover:!bg-[#f1f1f1] !rounded-full'>
+                        <Button id="dashboard" className='w-full !capitalize !justify-start flex gap-3 text-[14px]
+                     !text-[rgba(0,0,0,0.8)] font-[600] items-center hover:!bg-[#f1f1f1] !rounded-full'
+                        onClick={changeHandler}>
                             <MdOutlineDashboardCustomize className="text-[16px]" /><span>Dashboard</span>
                         </Button>
                     </li>
 
                     <li>
-                        <Button className='w-full !capitalize !justify-start flex gap-3 text-[14px]
+                        <Button id="user" className='w-full !capitalize !justify-start flex gap-3 text-[14px]
                      !text-[rgba(0,0,0,0.8)] font-[600] items-center hover:!bg-[#f1f1f1] !rounded-full'
-                            onClick={() => setShowContent(true)}>
+                            onClick={changeHandler}>
                             <FaRegCircleUser className="text-[16px]" /><span>User</span>
                         </Button>
                     </li>
@@ -68,8 +120,8 @@ const Sidebar = () => {
                         <Collapse isOpened={submenuIndex === 1 ? true : false}>
                             <ul className='w-full'>
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                     !font-[500] flex gap-[5px]' onClick={()=>setForestHandler(true)}
+                                    <Button id="forest" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                     !font-[500] flex gap-[5px]' onClick={changeHandler}
                                     >
                                         <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Forest
@@ -77,45 +129,49 @@ const Sidebar = () => {
                                 </li>
 
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                !font-[500] flex gap-[5px]' onClick={() => setSpeciesContent(true)}>
+                                    <Button id="species" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]' onClick={changeHandler}>
                                         <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Forest Species
                                     </Button>
                                 </li>
 
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                !font-[500] flex gap-[5px]' onClick={() => setMappingContent(true)}>
+                                    <Button id="mapping" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]' onClick={changeHandler}>
                                         <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Species Mapping
                                     </Button>
                                 </li>
 
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                !font-[500] flex gap-[5px]'><span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
+                                    <Button id="fire" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]' onClick={changeHandler}>
+                                        <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Fire
                                     </Button>
                                 </li>
 
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                !font-[500] flex gap-[5px]'><span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
+                                    <Button id="firemapping" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]' onClick={changeHandler}>
+                                        <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Fire Mapping
                                     </Button>
                                 </li>
 
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                !font-[500] flex gap-[5px]'><span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
+                                    <Button id="report" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]' onClick={changeHandler}>
+                                        <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Incedent Report
                                     </Button>
                                 </li>
 
                                 <li className='w-full'>
-                                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
-                                !font-[500] flex gap-[5px]'><span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
+                                    <Button id="village" className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !pl-8 !text-[13px]
+                                !font-[500] flex gap-[5px]' onClick={changeHandler}>
+                                        <span className='block w-[4px] h-[4px] rounded-full bg-[rgba(0,0,0,0.4)] !gap-x-2'></span>
                                         Village
                                     </Button>
                                 </li>
@@ -128,10 +184,12 @@ const Sidebar = () => {
             </div>
 
             <div className="">
+                {dashboardContent && <UDashboard />}
                 {showContent && <Content />}
-                {forestHandler && <Forest />}
+                {forestContent && <Forest />}
                 {speciesContent && <ForestSpecies />}
                 {mappingContent && <SpeciesMapping />}
+                {fireContent && <Fire />}
             </div>
         </div>
     );

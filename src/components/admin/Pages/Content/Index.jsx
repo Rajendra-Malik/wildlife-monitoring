@@ -37,21 +37,23 @@ const Content = () => {
     }
 
 
-    async function deleteSingleRow(id) {
+    async function updatedSingleRow(id,is_active) {
         try {
-            const deleteResult = await axios.delete(`http://localhost/wildlife_backend/api/user.php/${id}`);
-            if (deleteResult.status === 200) {
-                if (deleteResult.data.status === "0") {
-                    toast.error(deleteResult.data.errorMessage);
+            // console.log("id :" + id); 
+            // console.log("active : " + is_active);
+            const updateResult = await axios.put(`http://localhost/wildlife_backend/api/user.php/${id}`, {is_active : is_active});
+            if (updateResult.status === 200) {
+                if (updateResult.data.status === "1") {
+                    toast.success(updateResult.data.successMessage);
                 } else {
-                    // toast.success(deleteResult.data.successMessage);
-                    const re_call_user_data = await axios.get("http://localhost/wildlife_backend/api/user.php");
-                    if (re_call_user_data.data.status === "1") {
-                        setFilterData(re_call_user_data.data.post); 
-                         toast.success("User deleted successfully.");
-                    }
-                    }
-            } else {
+                    toast.error(updateResult.data.errorMessage);
+                }
+                const re_call_user_data = await axios.get("http://localhost/wildlife_backend/api/user.php");
+                if (re_call_user_data.data.status === "1") {
+                    setFilterData(re_call_user_data.data.post);
+                }
+            }
+            else {
                 toast.error("Status 404");
             }
         } catch (error) {
@@ -68,14 +70,14 @@ const Content = () => {
         // console.log("Updated userData:", userData);
     }, [userData]);
 
-     // filter changes
-     useEffect(() => {
+    // filter changes
+    useEffect(() => {
         const result = userData.filter((data) => {
             return data.name.match(search);
         })
 
         setFilterData(result);
-    },[search])
+    }, [search])
 
 
     const column = [
@@ -95,30 +97,40 @@ const Content = () => {
             width: "240px"
         },
         {
-            name: "Password",
-            selector: (row) => row.password
-        },
-        {
             name: "Address",
-            selector: (row) => row.address
+            selector: (row) => row.address,
+            width: "150px"
         },
         {
             name: "PhoneNo",
-            selector: (row) => row.phone_no
+            selector: (row) => row.phone_no,
+            width: "150px"
+        },
+        {
+            name: "Active",
+            selector: (row) => row.is_active,
+            // width: "150px"
         },
         {
             name: "Action",
             cell: (row) => (
-                <button className=" hover:cursor-pointer bg-[#FF5252] h-[27px] w-[45px] rounded-md
-                 flex items-center justify-center" onClick={() => deleteSingleRow(row.id)}>
-                    <TbHttpDelete className="h-[20px] w-[20px] text-white"/>
-                </button>
+                <button className=" hover:cursor-pointer 
+                 flex items-center justify-center" onClick={() => updatedSingleRow(row.id,row.is_active)}>
+                    {
+                        row.is_active === "t" ?
+                            (<div className="h-[27px] w-[75px] rounded-md !text-white bg-[#FF5252] !text-xs
+                                flex items-center justify-center !font-bold raieway-font">DEACTIVE</div>) :
+                            (<div className="h-[27px] w-[75px] rounded-md !text-white bg-green-500 !text-xs
+                                flex items-center justify-center !font-bold raieway-font">ACTIVE</div>)
+                    }
+                </button >
+                // <TbHttpDelete className="h-[27px] w-[45px] rounded-md text-white bg-[#FF5252]" />
             )
         }
     ];
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 shadow-2xl">
             {
                 loader ? (<Loader />) : (<DataTable columns={column} data={filterData}
                     pagination
@@ -130,11 +142,11 @@ const Content = () => {
                     subHeader
                     subHeaderComponent={
                         <input
-                            className=" !bg-[#f1f1f1] pt-1 pb-1 pl-2  !rounded-full text-sm 
+                            className=" !bg-white !border-b !border-black pt-1 pb-1 pl-2  w-[250px] text-sm 
                             font-normal text-center"
-                            type="text" 
+                            type="text"
                             value={search}
-                            onChange={ (e) => setSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value)}
                         />
                     }
 

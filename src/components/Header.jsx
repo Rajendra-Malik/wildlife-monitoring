@@ -75,8 +75,8 @@ function Header() {
                     <div className="hover:text-[#2EB872] text-[#292a2bb4] btgreen">
                         <NavLink to="/contact">CONTACT ME</NavLink>
                     </div>
-                    <div className="text-white bg-[#4DC387] h-[35px] w-[115px] text-semibold flex  justify-center items-center rounded-sm gap-x-2">
-                        <Link to="/login">LOGIN </Link>
+                    <div className="text-white bg-[#2EB872] opacity-100 h-[35px] w-[115px] text-semibold flex  justify-center items-center rounded-sm gap-x-2">
+                        <Link className="text-white opacity-100 raieway-font" to="/login">LOGIN </Link>
                         <span><FaArrowRight /></span>
                     </div>
                 </div>

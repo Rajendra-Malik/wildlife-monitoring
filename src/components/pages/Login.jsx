@@ -56,7 +56,7 @@ function Login() {
                     });
                    
                 } else if(loginApi.data.status == 1){
-                    toast.success(loginApi.data.success);
+                    // toast.success(loginApi.data.success);
                     // toast.success(loginApi.data.post);
                     // console.log(typeof(loginApi.data.post.roll_id));
                     

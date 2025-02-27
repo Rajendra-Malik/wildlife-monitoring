@@ -7,7 +7,7 @@ const AdDashboard = () => {
         <>
             <section className="main">
                 <AdHeader />
-                <div className="contentMain">
+                <div className="contentMain ">
                     <div className="sidebarWrapper w-[16%]">
                         <Sidebar />
                     </div>

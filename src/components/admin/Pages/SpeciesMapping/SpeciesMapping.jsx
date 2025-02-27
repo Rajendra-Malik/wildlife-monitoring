@@ -45,17 +45,17 @@ const Forest = () => {
             name: "Sl No",
             selector: (row) => row.id,
             sortable: true,
-            width: "70px"
+            width: "90px"
         },
         {
             name: "Forest Name",
             selector: (row) => row.forest_name,
-            width: "140px"
+            width: "180px"
         },
         {
             name: "Common Name",
             selector: (row) => row.common_name,
-            width: "200px"
+            width: "220px"
         },
         {
             name: "Scientific Name",
@@ -82,10 +82,10 @@ const Forest = () => {
                                         flex items-center justify-center">
                         <span className="h-[20px] w-[20px] text-white font-semibold">EDIT</span>
                     </button>
-                    <button className="hover:cursor-pointer bg-[#FF5252] h-[27px] w-[45px] rounded-md
+                    {/* <button className="hover:cursor-pointer bg-[#FF5252] h-[27px] w-[45px] rounded-md
                                         flex items-center justify-center">
                         <span><TbHttpDelete className="h-[20px] w-[20px] text-white"/></span>
-                    </button>
+                    </button> */}
                 </div>
             ),
             width: "130px"
@@ -93,12 +93,12 @@ const Forest = () => {
     ];
 
     return (
-        <div className="mt-4 -ml-18">
+        <div className=" -ml-18 shadow-2xl">
             {
                 loader ? (<Loader />) : (<DataTable columns={columns} data={speciesMapping}
                     pagination
-                    fixedHeader
-                    fixedHeaderScrollHeight="495px"
+                    // fixedHeader
+                    // fixedHeaderScrollHeight="570px"
                     selectableRows
                     selectableRowsHighlight
                     highlightOnHover

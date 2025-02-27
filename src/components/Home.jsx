@@ -1,6 +1,6 @@
 import tiger from "../assets/bg-1.jpg";
 import Carousel from "./Carousel"
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import lion from "../assets/about.jpg"
@@ -22,7 +22,8 @@ import jiraf from "../assets/animal-lg-3.jpg"
 import { FaMapMarkerAlt, } from "react-icons/fa";
 import { MdCall } from "react-icons/md";
 import { IoIosMailOpen } from "react-icons/io";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
+import { IoMdArrowDroprightCircle } from "react-icons/io";
 
 const Home = ({ slider }) => {
     let forestData = [
@@ -80,9 +81,9 @@ const Home = ({ slider }) => {
     return (
         <>
             <div className="flex w-full mt-2">
-                <div className="w-[50%]">
-                    <img src={tiger} alt="" className=" w-full h-[720px] object-cover" />
-                </div>
+                    <div className="w-[50%] bg-black">
+                        <img src={tiger} alt="" className=" w-full h-[720px] object-cover opacity-45" />
+                    </div>
                 <div className="w-[50%]"> { /* relative */}
                     <Carousel slider={slider} />
                 </div>
@@ -91,13 +92,17 @@ const Home = ({ slider }) => {
                 <div className="text-5xl font-serif text-white">
                     <h1>Enjoy Wonderful Day With Your Family</h1>
                 </div>
-                <div>
-                    <div className="bg-[#ccdcd4] w-36 opacity-35 h-12 rounded-md flex items-center justify-center font-bold">
-                        <NavLink>Read More</NavLink>
+                <div className="flex items-center gap-x-10">
+                    <div className="bg-[#2EB872] w-42 opacity-100 h-12 flex items-center justify-center font-bold">
+                        <Link className="text-white">Read More</Link>
                     </div>
-                    <div>
-
-                    </div>
+                    <motion.div className="flex items-center gap-x-4 cursor-pointer"
+                    >
+                        <div className="h-[60px] w-[60px] bg-white rounded-full flex items-center justify-center">
+                            <IoMdArrowDroprightCircle className="h-8 w-8"/>
+                        </div>
+                        <p className="text-white font-semibold text-sm">Watch Video</p>
+                    </motion.div>
                 </div>
             </div>
 
@@ -149,7 +154,7 @@ const Home = ({ slider }) => {
 
                 {/* right part */}
                 <motion.div className="w-[50%]"
-                     initial={
+                    initial={
                         {
                             opacity: 0
                         }
@@ -171,7 +176,7 @@ const Home = ({ slider }) => {
 
             {/* no 3 part */}
             <motion.div className="w-10/11 m-auto mt-24"
-                 initial={
+                initial={
                     {
                         opacity: 0
                     }
@@ -217,7 +222,7 @@ const Home = ({ slider }) => {
 
             {/* 4th part */}
             <motion.div className="mt-40 w-11/12 m-auto"
-                 initial={
+                initial={
                     {
                         opacity: 0
                     }
@@ -266,33 +271,33 @@ const Home = ({ slider }) => {
                             Let`s See Our<span className="text-[#2EB872] ml-6">Wildlife</span> Awsome Animals
                         </h1>
                     </div>
-                    <div className="bg-[#ccdcd4] w-72 h-14 text-white flex items-center justify-center font-semibold mt-20">
-                        <NavLink>Read More</NavLink>
+                    <div className="bg-[#2EB872] opacity-100 w-72 h-14 hover:cursor-pointer text-white flex items-center justify-center font-semibold mt-20">
+                        <Link className="text-white opacity-100">Read More</Link>
                     </div>
                 </div>
 
                 {/* animal */}
                 <div className="w-full">
                     <div className="flex justify-center gap-x-8">
-                        <div className="w-[400px] h-[150px]">
-                            <img src={dear} alt="" />
+                        <div className="w-[400px] h-full hover:bg-black">
+                            <img src={dear} alt="" className=" hover:opacity-75"/>
                         </div>
-                        <div className="w-[440px] ">
-                            <img src={cat} alt="" />
+                        <div className="w-[440px]  hover:bg-black">
+                            <img src={cat} alt="" className=" hover:opacity-75"/>
                         </div>
-                        <div className="w-[400px] h-[150px]">
-                            <img src={elephant} alt="" />
+                        <div className="w-[400px] h-full hover:bg-black">
+                            <img src={elephant} alt="" className=" hover:opacity-75"/>
                         </div>
                     </div>
                     <div className="flex justify-center gap-x-7 -mt-68 ">
-                        <div>
-                            <img src={animal} alt="" className="w-[402px] h-[507px]" />
+                        <div className="hover:bg-black">
+                            <img src={animal} alt="" className="w-[402px] h-[507px] hover:opacity-75" />
                         </div>
-                        <div className=" mt-72">
-                            <img src={jebra} alt="" className="h-[220px] w-[445px]" />
+                        <div className=" mt-72 hover:bg-black">
+                            <img src={jebra} alt="" className="h-[220px] w-[445px] hover:opacity-75" />
                         </div>
-                        <div>
-                            <img src={jiraf} alt="" className="w-[400px] h-[507px]" />
+                        <div className="hover:bg-black">
+                            <img src={jiraf} alt="" className="w-[400px] h-[507px] hover:opacity-75" />
                         </div>
                     </div>
                 </div>
@@ -365,7 +370,7 @@ const Home = ({ slider }) => {
             {/* contact info */}
             <div className="w-full mt-20">
                 <motion.div className="w-11/12 m-auto flex gap-x-10 ml-30"
-                     initial={
+                    initial={
                         {
                             opacity: 0
                         }
@@ -431,8 +436,8 @@ const Home = ({ slider }) => {
                                     placeholder="Youe Email"
                                 />
                             </div>
-                            <input type="text" placeholder="Subject" className="h-[45px] !rounded-md !border-none text-center"/>
-                            <textarea placeholder="Message" className="!rounded-md border-black border-2 text-center"/>
+                            <input type="text" placeholder="Subject" className="h-[45px] !rounded-md !border-none text-center" />
+                            <textarea placeholder="Message" className="!rounded-md border-black border-2 text-center" />
                         </div>
 
                     </div>
