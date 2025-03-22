@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 const Card = ({data}) => {
     return (
         <>
-            <motion.div className="flex flex-col gap-y-2 h-[180px] w-[330px]"
+            <motion.div className="flex flex-col gap-y-2 h-[180px] w-[330px] "
                  initial={
                     {
                         opacity: 0

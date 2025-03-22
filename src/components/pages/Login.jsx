@@ -69,7 +69,7 @@ function Login() {
                         
                         navigate("/admin");
                     } else {
-                        navigate("/dashboard");
+                        navigate("/user");
                     }
                         
                 }

@@ -81,9 +81,9 @@ const Home = ({ slider }) => {
     return (
         <>
             <div className="flex w-full mt-2">
-                    <div className="w-[50%] bg-black">
-                        <img src={tiger} alt="" className=" w-full h-[720px] object-cover opacity-45" />
-                    </div>
+                <div className="w-[50%] bg-black">
+                    <img src={tiger} alt="" className=" w-full h-[720px] object-cover opacity-45" />
+                </div>
                 <div className="w-[50%]"> { /* relative */}
                     <Carousel slider={slider} />
                 </div>
@@ -98,9 +98,32 @@ const Home = ({ slider }) => {
                     </div>
                     <motion.div className="flex items-center gap-x-4 cursor-pointer"
                     >
-                        <div className="h-[60px] w-[60px] bg-white rounded-full flex items-center justify-center">
-                            <IoMdArrowDroprightCircle className="h-8 w-8"/>
-                        </div>
+                        <div 
+    className="h-[60px] w-[60px] bg-white rounded-full flex items-center justify-center"
+    style={{
+        animation: "pulseEffect 1.5s infinite ease-in-out",
+        boxShadow: "0 0 0 0 rgba(59, 130, 246, 0.5)"
+    }}
+>
+    <IoMdArrowDroprightCircle className="h-8 w-8 text-gray-1000" />
+    <style>
+        {`
+            @keyframes pulseEffect {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(59, 130, 246, 1);
+                }
+                50% {
+                    box-shadow: 0 0 15px 10px rgba(59, 130, 246, 0.6);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(59, 130, 246, 2);
+                }
+            }
+        `}
+    </style>
+</div>
+
+
                         <p className="text-white font-semibold text-sm">Watch Video</p>
                     </motion.div>
                 </div>
@@ -280,13 +303,13 @@ const Home = ({ slider }) => {
                 <div className="w-full">
                     <div className="flex justify-center gap-x-8">
                         <div className="w-[400px] h-full hover:bg-black">
-                            <img src={dear} alt="" className=" hover:opacity-75"/>
+                            <img src={dear} alt="" className=" hover:opacity-75" />
                         </div>
                         <div className="w-[440px]  hover:bg-black">
-                            <img src={cat} alt="" className=" hover:opacity-75"/>
+                            <img src={cat} alt="" className=" hover:opacity-75" />
                         </div>
                         <div className="w-[400px] h-full hover:bg-black">
-                            <img src={elephant} alt="" className=" hover:opacity-75"/>
+                            <img src={elephant} alt="" className=" hover:opacity-75" />
                         </div>
                     </div>
                     <div className="flex justify-center gap-x-7 -mt-68 ">
