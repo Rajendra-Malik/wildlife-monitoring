@@ -15,6 +15,12 @@ import Content from "./components/admin/Pages/Content/Index.jsx"
 import UserMainHeader from "./components/user/UserMainHeader.jsx"
 import User from './components/user/User.jsx'
 import Map from './components/user/Map.jsx'
+import Species from './components/user/Species.jsx'
+import SimlipalSpecies from "./components/user/SimlipalSpecies.jsx"
+import Nandankanan from './components/user/Nandankanan.jsx'
+import Fire from './components/user/Fire.jsx'
+import Forest from './components/user/Forest.jsx'
+
 
 
 function App() {
@@ -44,6 +50,11 @@ function App() {
         <Route element={<UserMainHeader />}>
           <Route path="/user" element={<User />} />
           <Route path="/map" element={<Map />} />
+          <Route path="/species" element={<Species />} />
+          <Route path="/simlipal" element={<SimlipalSpecies />} />
+          <Route path="/kanan" element={<Nandankanan />} />
+          <Route path="/fire" element={<Fire />} />
+          <Route path="/forest" element={<Forest />} />
         </Route>
 
       </Routes >

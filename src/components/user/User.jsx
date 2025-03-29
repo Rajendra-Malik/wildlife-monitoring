@@ -1,10 +1,10 @@
-import Nav from "./Nav";
+
 import UserContent from "./UserContent";
 
 const User = () => {
     return (
-        <div className="flex flex-col gap-y-2">
-            <div>
+        <div className="flex flex-col">
+            <div className="h-full w-full">
                 <UserContent />
             </div>
         </div>

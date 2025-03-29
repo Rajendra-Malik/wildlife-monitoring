@@ -12,6 +12,8 @@ import Divider from '@mui/material/Divider';
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineSettingsPower } from "react-icons/md";
 import { TbSettingsCheck } from "react-icons/tb";
+import Store from '../../../zustand/Store';
+import { useNavigate } from "react-router-dom";
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -25,6 +27,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const AdHeader = () => {
 
+    const navigate = useNavigate();
+    const { userData } = Store();
     const [anchorMyAcc, setAnchorMyAcc] = React.useState(null);
     const openMyAcc = Boolean(anchorMyAcc);
     const handleClickMyAcc = (event) => {
@@ -34,6 +38,9 @@ const AdHeader = () => {
         setAnchorMyAcc(null);
     };
 
+    function logOutHandler() {
+        navigate('/');
+    }
 
     return (
         <header className="w-full h-[auto] py-2 pl-64 pr-7 bg-[#fff] border-b shadow-md flex items-center justify-between raleway-font">
@@ -99,8 +106,8 @@ const AdHeader = () => {
                                 <FaUserCircle className="w-[30px] h-[25px] text-[#6A6A6A]" />
                                 </div>
                                 <div className='info'>
-                                    <h3 className='text-[15px] font-[500] leading-5'>Malik</h3>
-                                    <p className='text-[12px] font-[400] opacity-70'>admin0-1@gmail.com</p>
+                                    <h3 className='text-[15px] font-[500] leading-5'>{userData.name}</h3>
+                                    <p className='text-[12px] font-[400] opacity-70'>{userData.email_id}</p>
                                 </div>
                             </div>
                         </MenuItem>
@@ -115,7 +122,7 @@ const AdHeader = () => {
 
                         <Divider />
                         <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
-                            <MdOutlineSettingsPower className="text-[18px]"/> <span className='text-[14px]'>Log Out</span>
+                            <MdOutlineSettingsPower className="text-[18px]"/> <span className='text-[14px]' onClick={logOutHandler}>Log Out</span>
                         </MenuItem>
                     </Menu>
                 </div>

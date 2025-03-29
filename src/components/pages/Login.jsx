@@ -4,11 +4,12 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import Dashboard from "./Dashboard"
+import Store from "../zustand/Store"; // import zustand
 
 
 function Login() {
 
+    const { updateUserData } = Store(); // zustand updated name
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [loginFormData, setLoginFormData] = useState({
@@ -20,16 +21,15 @@ function Login() {
         const { name, value } = event.target;
         setLoginFormData(prevLoginFormData => {
             return {
-                    ...prevLoginFormData,
-                    [name] : value
-                }
-            })
+                ...prevLoginFormData,
+                [name]: value
+            }
+        })
     }
 
     async function loginSubmitHandler(event) {
         event.preventDefault();
-
-            // api login Credential code 
+        // api login Credential code 
         try {
             const newObjData = {
                 loginemail: loginFormData.loginemail,
@@ -48,30 +48,26 @@ function Login() {
 
             if (loginApi.status === 200) {
                 if (loginApi.data.status == 0) {
-                    // console.log("sattus Data: " + loginApi.data.status);
                     toast.error(loginApi.data.errorMessage);
                     setLoginFormData({
                         loginemail: "",
                         loginpassword: ""
                     });
-                   
-                } else if(loginApi.data.status == 1){
-                    // toast.success(loginApi.data.success);
-                    // toast.success(loginApi.data.post);
-                    // console.log(typeof(loginApi.data.post.roll_id));
-                    
+
+                } else if (loginApi.data.status == 1) {
                     setLoginFormData({
                         loginemail: "",
                         loginpassword: ""
                     });
 
                     if (parseInt(loginApi.data.post.roll_id) === 1) {
-                        
+                        updateUserData(loginApi.data.post); //zustand updated
                         navigate("/admin");
-                    } else {
+                    } else if (parseInt(loginApi.data.post.roll_id) === 2) {
+                        updateUserData(loginApi.data.post); //zustand updated
                         navigate("/user");
                     }
-                        
+
                 }
             } else {
                 toast.warning("Please check the API");

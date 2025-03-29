@@ -1,10 +1,13 @@
-
+import Store from "../zustand/Store"; // import zustand
 
 const UserContent = () => {
+    const { userData } = Store(); // zustand variable 
+
     return (
-        <div className="h-[625px] w-full bg-[#EDEBE9] rounded-lg pl-8 pr-8 text-center font-bold text-3xl p-20">
-            WelCome To WildLife Habitat Monitoring
-        </div>
+            <div className="h-[550px] w-full rounded-2xl  text-center pt-30 font-bold text-3xl">
+                WelCome To WildLife Habitat Monitoring
+                <p>mr/ms: </p><span>{userData.name}</span>
+            </div>
     );
 }
 

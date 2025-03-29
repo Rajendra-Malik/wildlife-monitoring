@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FaUserCircle } from "react-icons/fa";
@@ -7,38 +7,51 @@ import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineSettingsPower } from "react-icons/md";
 import { TbSettingsCheck } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Store from "../zustand/Store"; // import zustand
 
 const Nav = () => {
+    const [anchorMyAcc, setAnchorMyAcc] = useState(null);
+    const [reportModal, setReportModal] = useState(false); // State for report modal
+    const navigate = useNavigate();
+    const { userData } = Store(); // zustand variable 
 
-    const [anchorMyAcc, setAnchorMyAcc] = React.useState(null);
     const openMyAcc = Boolean(anchorMyAcc);
-    const handleClickMyAcc = (event) => {
-        setAnchorMyAcc(event.currentTarget);
-    };
-    const handleCloseMyAcc = () => {
-        setAnchorMyAcc(null);
-    };
+    const handleClickMyAcc = (event) => setAnchorMyAcc(event.currentTarget);
+    const handleCloseMyAcc = () => setAnchorMyAcc(null);
+    const logOutHandler = () => navigate('/');
 
     return (
         <div className='w-full h-15 flex items-center justify-between bg-white pl-8 pr-8 rounded-full shadow'>
-            <div className='flex gap-x-12 fixed'>
-                <div>
-                    {/* <img src="" alt="" /> */}
-                    <p className='font-bold text-3xl'>Wild Life</p>
+            <div className='flex gap-x-10 fixed'>
+                <div onClick={() => navigate('/user')} className='hover:cursor-pointer'>
+                    <img src="../src/assets/wildlife_habitatmonitoring.png" alt="" className='h-[80px] w-[100px]' />
                 </div>
                 <div className='flex items-center'>
                     <ul className='flex gap-x-12 font-semibold text-md'>
                         <li className='hover:text-[#aca9a9]'>
-                            <Link>Forest</Link>
+                            <Link to="/forest">Forest</Link>
                         </li>
                         <li className='hover:text-[#aca9a9]'>
-                            <Link>Species</Link>
+                            <Link to="/species">Species</Link>
                         </li>
                         <li className='hover:text-[#aca9a9]'>
-                            <Link>Fire</Link>
+                            <Link to="/fire">Fire</Link>
                         </li>
-                        <li className='hover:text-[#aca9a9]'>
+                        <li
+                            className='hover:text-[#aca9a9] relative'
+                            onMouseEnter={() => setReportModal(true)}
+                            onMouseLeave={() => setReportModal(false)}
+                        >
                             <Link>Report</Link>
+                            {reportModal && (
+                                <div className="absolute top-6 left-0 bg-white shadow-lg p-3 rounded-md w-[200px] z-10">
+                                    <p className='text-lg text-gray-700'>24 hours Report.</p>
+                                    <div>
+                                        
+                                    </div>
+                                </div>
+                            )}
                         </li>
                     </ul>
                 </div>
@@ -50,9 +63,6 @@ const Nav = () => {
                         flex items-center justify-center hover:text-[#aca9a9]'>
                             <Link to="/map">Map</Link>
                         </li>
-                        {/* <li>
-                            <p>Time</p>
-                        </li> */}
                     </ul>
                 </div>
 
@@ -105,8 +115,8 @@ const Nav = () => {
                                     <FaUserCircle className="w-[30px] h-[25px] text-[#6A6A6A]" />
                                 </div>
                                 <div className='info'>
-                                    <h3 className='text-[15px] font-[500] leading-5'>Malik</h3>
-                                    <p className='text-[12px] font-[400] opacity-70'>admin0-1@gmail.com</p>
+                                    <h3 className='text-[15px] font-[500] leading-5'>{userData.name}</h3>
+                                    <p className='text-[12px] font-[400] opacity-70'>{userData.email_id}</p>
                                 </div>
                             </div>
                         </MenuItem>
@@ -121,7 +131,8 @@ const Nav = () => {
 
                         <Divider />
                         <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
-                            <MdOutlineSettingsPower className="text-[18px]" /> <span className='text-[14px]'>Log Out</span>
+                            <MdOutlineSettingsPower className="text-[18px]" /> <span className='text-[14px]'
+                                onClick={logOutHandler}>Log Out</span>
                         </MenuItem>
                     </Menu>
                 </div>

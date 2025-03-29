@@ -6,7 +6,7 @@ import { FaAngleRight } from "react-icons/fa6";
 
 const Footer = () => {
     return (
-        <div className="footbg mt-32">
+        <div className="footbg mt-22">
             <div className="bg-black h-[100%] w-[100%] opacity-65 flex items-center justify-around pl-10">
                 <div className="text-white flex flex-col gap-y-6">
                     <p className="text-white">Address</p>
